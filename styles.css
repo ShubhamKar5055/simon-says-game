@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     text-align: center;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 #heading, #game-status, #highest-score {
@@ -12,7 +13,7 @@
 
 #heading {
     margin-top: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #game-status {
@@ -44,6 +45,7 @@
     height: 90%;
     border: 5px solid black;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 #yellow {
@@ -67,11 +69,16 @@
     margin-bottom: 20px;
 }
 
-/* These styles would be dynamically applied or removed based on changes made to the element's class
-   using JavaScript's classList property */
+/* These styles will be dynamically applied or removed based on changes made to the element's class
+   using jQuery's toggleClass method */
+
+#container .level-up {
+    background-color: whitesmoke;
+}
 
 #container .clicked {
-    background-color: whitesmoke;
+    background-color: greenyellow;
+    box-shadow: 0 0 10px 3px greenyellow;
 }
 
 .game-over {
