@@ -53,7 +53,7 @@ let highestScore = 0; // Highest score achieved
 
 /* It is the default game status 
    gameEnded -> true (Click events would have no effect) 
-   gameEnded -> false (Keyboard events would have no effect) */
+   gameEnded -> false (Key press events would have no effect) */
 
 let gameEnded = true; 
 
@@ -63,20 +63,18 @@ function randomButton() {
     return buttons[Math.floor(Math.random()*4)];
 }
 
-/* A function that empties the gamePattern or userPattern arrays depending on the circumstance
-   Level up -> userPattern
-   Game over ->  Both */
+/* This function clears the contents of the given array.
+   - On level up, it clears the userPattern array.
+   - On game over, it clears both the gamePattern and userPattern arrays. */
 
 function emptyArray(arr) {
     arr.splice(0, arr.length);
 }
 
-/* The function is called when the player clears the previous level
-   To begin with, it manages certain global identifiers
-   It then calls the randomButton() function which returns a random button object
-   It adds and removes the "level-up" class from the button element of the object which affects the CSS styling
-   for the element along with playing the corresponding sound
-   Finally, it returns the ID associated with the object */
+/* This function is triggered when the player clears the previous level 
+   It manages global identifiers, and calls the randomButton() function to get a random button object
+   The "level-up" class is toggled on the button element (DOM element) to apply CSS styling, and the corresponding sound is played 
+   Finally, it returns the ID associated with the random button object */
 
 function levelUp() {
     emptyArray(userPattern);
@@ -90,9 +88,9 @@ function levelUp() {
     return buttonObj.id;
 }
 
-/* The function is called every time a keyboard button has been pressed
-   The conditional statement ensures the code inside only runs when the game is in initial or final state
-   The slideDown() method has been used for animation to make the experience more interactive
+/* The function is triggered for every key press event
+   The conditional statement ensures the code inside only runs when the game is in initial or final state (gameEnded = true)
+   The slideDown() method has been used for animation to make the user experience more interactive
    The setTimeout() function ensures the animation doesn't interfere with the game's functionality */
 
 function startGame() {
@@ -105,7 +103,7 @@ function startGame() {
     }
 }
 
-/* It adds and removes the "clicked" class from the button element of the object which affects the css styling
+/* It toggles the "clicked" class from the button element of the object which affects the css styling
    for the element along with playing the corresponding sound signifying that the button has been clicked
    Finally, it returns the ID associated with the object */
 
@@ -122,7 +120,7 @@ function buttonClicked(id) {
 }
 
 /* The function checks if the gamePattern and userPattern arrays follow the same pattern 
-   It is called for every click event */
+   It is triggered for every click event */
 
 function patternCheck() {
     for(let i = 0; i < userPattern.length; i++) {
@@ -133,8 +131,13 @@ function patternCheck() {
     return true;
 }
 
-/* To begin with, the function handles some of the global identifiers and sets them to their default state
-   It also takes care of some visual and audible changes which signifies that the game has ended */
+/* This function is triggered when the game ends. 
+   It handles the global identifiers by setting them to their default state. 
+   Visual and audible changes are applied to signify the game over state: 
+   - The "game-over" class is toggled on the body element to apply CSS styling.
+   - The container is slid up to indicate the end of the game.
+   - An error sound is played.
+   Finally, the game over message with the player's score is displayed, and the user is prompted to press any key to restart. */
 
 function gameOver() {
     gameEnded = true;
@@ -149,8 +152,8 @@ function gameOver() {
     gameStatus.html(`Game Over! Your score was ${ score }<br>Press any key to start.`);
 }
 
-/* The function sets a new highest score for the player if he/she has surpasses their previous record
-   It also sets certain identifiers to their default state */
+/* The function sets the highestScore identifier to a new value if the player has surpassed his/her previous record
+   It also sets the score and level identifiers to their default state */
 
 function handleStats() {
     if(score > highestScore) {
@@ -160,7 +163,7 @@ function handleStats() {
     level = 0;
 }
 
-// Handles the keyboard key press event
+// Handles the key press event
 
 body.keydown(function() {
     startGame();
