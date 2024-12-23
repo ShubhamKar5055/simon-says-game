@@ -2,7 +2,7 @@
 This project is a digital version of the classic Simon Says memory game, built using HTML, CSS, JavaScript, and jQuery.  
 
 ## How to Play  
-1. Click on any button to begin the game.  
+1. Press any key on the keyboard to begin the game.  
 2. Simon will play a sequence of colors by lighting them up.  
 3. Repeat the sequence by clicking the colors in the same order.  
 4. If you make a mistake, the game will end. But if you complete the sequence correctly, Simon will add another color to the sequence and play it back to you.  
